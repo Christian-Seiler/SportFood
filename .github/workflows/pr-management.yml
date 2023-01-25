@@ -1,0 +1,18 @@
+name: PR Management
+
+# Controls when the workflow will run
+on:
+  pull_request:
+    types:
+      - opened
+      - edited
+
+env:
+  PR: ${{ github.event.pr.html_url }}
+
+jobs:
+  manage-issue:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Add Reviewer
+        run: gh issue edit $PR --add-reviewer Christian-Seiler
